@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه ساعت</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* استایل مودال */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* استایل دکمه تماس */
+        .contact-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* پاسخ‌دهی به دستگاه‌های کوچکتر */
+        @media (max-width: 400px) {
+            .modal-content {
+                width: 90%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>فروشگاه ساعت</h1>
+        <nav>
+            <ul>
+                <li><a href="#products" aria-label="مشاهده محصولات">محصولات</a></li>
+                <li><a href="javascript:void(0);" id="aboutLink" aria-label="مشاهده درباره ما">درباره ما</a></li>
+                <li><a href="javascript:void(0);" id="contactLink" aria-label="تماس با ما">تماس با ما</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="products">
+        <h2 style="text-align: center; margin-bottom: 20px;">محصولات ما</h2>
+        <div class="products-grid">
+            <div class="product">
+                <img src="watch1.jpg" alt="ساعت لوکس" onerror="this.src='default-watch.jpg';">
+                <h3>ساعت لوکس</h3>
+                <p>قیمت: 500,000 تومان</p>
+            </div>
+            <div class="product">
+                <img src="watch2.jpg" alt="ساعت اسپرت" onerror="this.src='default-watch.jpg';">
+                <h3>ساعت اسپرت</h3>
+                <p>قیمت: 300,000 تومان</p>
+            </div>
+            <div class="product">
+                <img src="watch3.jpg" alt="ساعت مدرن" onerror="this.src='default-watch.jpg';">
+                <h3>ساعت مدرن</h3>
+                <p>قیمت: 400,000 تومان</p>
+            </div>
+            <div class="product">
+                <img src="watch4.jpg" alt="ساعت کلاسیک" onerror="this.src='default-watch.jpg';">
+                <h3>ساعت کلاسیک</h3>
+                <p>قیمت: 600,000 تومان</p>
+            </div>
+            <div class="product">
+                <img src="watch5.jpg" alt="ساعت اسپرت" onerror="this.src='default-watch.jpg';">
+                <h3>ساعت اسپرت</h3>
+                <p>قیمت: 300,000 تومان</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- پنجره مودال برای تماس -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" aria-label="بستن">&times;</span>
+            <h3>تماس با ما</h3>
+            <p>شماره موبایل: <strong>0912-3456789</strong></p>
+            <p>آیدی تلگرام: <strong>@myshop</strong></p>
+            <a href="tel:09123456789" class="contact-button">تماس با ما</a>
+            <a href="https://t.me/myshop" class="contact-button" target="_blank">چت در تلگرام</a>
+        </div>
+    </div>
+
+    <!-- پنجره مودال برای درباره ما -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" aria-label="بستن">&times;</span>
+            <h3>درباره ما</h3>
+            <p>آدرس مغازه: <strong>تهران، خیابان ولیعصر، جنب پارک ملت</strong></p>
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center;">© 2024 فروشگاه ساعت. تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script>
+        // دریافت المان‌ها
+        var contactModal = document.getElementById("contactModal");
+        var aboutModal = document.getElementById("aboutModal");
+        var contactBtn = document.getElementById("contactLink");
+        var aboutBtn = document.getElementById("aboutLink");
+        var closeBtns = document.getElementsByClassName("close");
+
+        // باز کردن مودال تماس
+        contactBtn.onclick = function() {
+            contactModal.style.display = "block";
+        }
+
+        // باز کردن مودال درباره ما
+        aboutBtn.onclick = function() {
+            aboutModal.style.display = "block";
+        }
+
+        // بستن مودال
+        for (var i = 0; i < closeBtns.length; i++) {
+            closeBtns[i].onclick = function() {
+                contactModal.style.display = "none";
+                aboutModal.style.display = "none";
+            }
+        }
+
+        // بستن مودال اگر کاربر خارج از آن کلیک کند
+        window.onclick = function(event) {
+            if (event.target == contactModal || event.target == aboutModal) {
+                contactModal.style.display = "none";
+                aboutModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
